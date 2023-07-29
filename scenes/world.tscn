@@ -1,0 +1,113 @@
+[gd_scene load_steps=4 format=3 uid="uid://uvlfcnmp12fo"]
+
+[ext_resource type="Script" path="res://resources/scripts/FoundWordsController.gd" id="1_48k13"]
+[ext_resource type="Script" path="res://resources/scripts/tag_search.gd" id="1_tpimy"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_o1pji"]
+resource_local_to_scene = true
+script = ExtResource("1_tpimy")
+
+[node name="World" type="Node2D"]
+
+[node name="TextForFind" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 9.0
+offset_top = 306.0
+offset_right = 633.0
+offset_bottom = 640.0
+
+[node name="Panel" type="Panel" parent="TextForFind"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextForFind"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextForFind/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font size=20]Пример, кликать ниже по тексту[/font]
+
+Этот $1 на подобии игры $2, [color=gray]another bbcode[/color]
+
+$@#!%^&*
+
+by @3"
+shortcut_keys_enabled = false
+custom_effects = [SubResource("RichTextEffect_o1pji")]
+meta_underlined = false
+hint_underlined = false
+threaded = true
+
+[node name="FoundedWords" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 638.0
+offset_top = 306.0
+offset_right = 1147.0
+offset_bottom = 642.0
+
+[node name="Panel" type="Panel" parent="FoundedWords"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="FoundedWords"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HFlowContainer" type="HFlowContainer" parent="FoundedWords/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FoundedWords"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -59.0
+offset_top = 8.0
+offset_right = 59.0
+offset_bottom = 34.0
+grow_horizontal = 2
+text = "Найдено"
+
+[node name="Button" type="Button" parent="FoundedWords"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 56.0
+offset_bottom = 38.0
+text = "Clear"
+
+[node name="FoundWordsController" type="Node" parent="."]
+script = ExtResource("1_48k13")
+
+[connection signal="pressed" from="FoundedWords/Button" to="FoundWordsController" method="_on_button_pressed"]
+[connection signal="pressed" from="FoundedWords/Button" to="FoundWordsController" method="_on_clear"]
